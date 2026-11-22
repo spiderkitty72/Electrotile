@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="board_background">#FF0B1410</color>
+    <color name="ic_launcher_background">#FF0F2A1E</color>
+
+    <style name="Theme.Electrotile" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/board_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>
