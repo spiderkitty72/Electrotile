@@ -1,0 +1,19 @@
+# Apache settings for Electrotile. Needs AllowOverride FileInfo. Every block is optional
+# and guarded, so the game still runs if a module is missing or .htaccess files are ignored.
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType text/javascript .js
+  AddType image/svg+xml .svg
+</IfModule>
+
+<IfModule mod_headers.c>
+  # The service worker and page must always be revalidated so updates reach players.
+  <FilesMatch "^(sw\.js|index\.html|manifest\.webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/manifest+json image/svg+xml
+</IfModule>

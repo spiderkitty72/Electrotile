@@ -9,12 +9,34 @@ current from the battery or charging a capacitor.
 The circuit is re-simulated after every tap, so live conductors glow and each target shows its
 current reading.
 
+## Web version (HTML5 + PWA)
+
+`web/` is the same game as a static HTML5 site with no build step. Copy the folder's contents
+to any directory Apache serves, for example:
+
+```sh
+sudo cp -r web/. /var/www/html/electrotile/
+```
+
+then open `http://your-server/electrotile/`. Everything uses relative paths, so it works at the
+site root or in a subfolder. The included `.htaccess` sets the manifest's MIME type and stops
+browsers caching the service worker; it needs `AllowOverride FileInfo` and is optional.
+
+It is a Progressive Web App: browsers offer to install it to the home screen, and once loaded
+it plays offline. Installing and offline play need HTTPS (or `localhost`). After changing any
+web file, bump `CACHE` in `web/sw.js` so installed copies pick up the update.
+
+Progress is saved in the browser's local storage. Logic tests run with `npm test` in `web/`.
+CI uploads a ready-to-copy `electrotile-web` artifact on every push.
+
 ## Project layout
 
 - `core/` is plain Kotlin with no Android dependencies: the board model, the DC circuit
   solver, level targets and the handcrafted levels. Its unit tests check that every level's
   solution meets its targets.
 - `app/` is the Jetpack Compose Android app: level select, the game board and progress saving.
+- `web/` is the HTML5 + PWA version. `web/js/engine.js` is a JavaScript port of `core/`, so a
+  level change has to be made in both `Level.kt` and `engine.js`.
 
 ## How the simulation works
 

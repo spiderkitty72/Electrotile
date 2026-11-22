@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Electrotile</title>
+  <meta name="description" content="Rotate tiles to complete electric circuits that hit their targets.">
+  <meta name="theme-color" content="#0b1410">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section id="select-screen">
+      <header class="title-row">
+        <div>
+          <h1>ELECTROTILE</h1>
+          <p class="muted">Turn the tiles. Close the circuit. Hit the numbers.</p>
+        </div>
+        <button id="install" class="pill" hidden>Install</button>
+      </header>
+      <div id="level-grid" class="level-grid"></div>
+    </section>
+
+    <section id="game-screen" hidden>
+      <nav class="toolbar">
+        <button id="back" class="text-button">&larr; Levels</button>
+        <span class="spacer"></span>
+        <span id="moves" class="muted">Moves 0</span>
+        <button id="reset" class="text-button">Reset</button>
+      </nav>
+      <h2 id="level-heading"></h2>
+      <p id="level-tip" class="muted"></p>
+      <div id="requirements" class="requirements" aria-live="polite"></div>
+      <div id="board-wrap" class="board-wrap">
+        <canvas id="board" aria-label="Circuit board. Tap a tile to rotate it."></canvas>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="win">
+    <h3>Circuit complete!</h3>
+    <p id="win-text"></p>
+    <div class="dialog-buttons">
+      <button id="win-levels" class="text-button">Levels</button>
+      <button id="win-next" class="text-button strong">Next level</button>
+    </div>
+  </dialog>
+
+  <noscript>Electrotile needs JavaScript to run.</noscript>
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
